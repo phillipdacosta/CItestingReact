@@ -1,0 +1,15 @@
+version: '3.2'
+services:
+  reactapptest:
+    build: ../
+    environment:
+      - PORT=8081
+  cypress:
+    image: "cypress/included:4.4.0"
+    depends_on:
+      - reactapptest
+    environment:
+      - CYPRESS_baseUrl=http://localhost:8081
+    working_dir: /e2e
+    volumes:
+      - ./:/e2e

@@ -1,0 +1,17 @@
+version: '3.2'
+services:
+  code-challenge_reactapptest:
+    build: .
+    ports:
+      - "8080:3000" 
+  cypress:
+        build:
+            context: .
+            dockerfile: ./cypress/Dockerfile
+        container_name: cypress
+        restart: unless-stopped
+        volumes:
+            - .:/e2e
+        depends_on:
+            - code-challenge_reactapptest
+        

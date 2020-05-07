@@ -1,0 +1,9 @@
+{
+    "baseUrl": "http://localhost:8080",
+    "integrationFolder": "cypress/integration",
+    "fileServerFolder": "dist",
+    "viewportWidth": 1200,
+    "viewportHeight": 1000,
+    "chromeWebSecurity": false,
+    "projectId": "3orb3g"
+  }

@@ -1,0 +1,13 @@
+FROM cypress/included:3.4.1
+
+COPY hosts /etc/
+
+WORKDIR /e2e
+
+COPY package*.json ./
+
+RUN npm install --production
+
+COPY . .
+
+ENTRYPOINT sleep 10; npm run cypress-run-chrome

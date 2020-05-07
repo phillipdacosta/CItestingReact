@@ -1,0 +1,16 @@
+version: '3.2'
+services:
+  code-challenge_reactapptest:
+    build: .
+    ports:
+      - "8080:3000"
+  cypress:
+    image: "cypress/included:4.4.0"
+    restart: on-failure
+    depends_on:
+      - code-challenge_reactapptest
+    environment:
+      - CYPRESS_baseUrl=http://0.0.0.0:8080/
+    working_dir: /e2e
+    volumes:
+      - ./:/e2e

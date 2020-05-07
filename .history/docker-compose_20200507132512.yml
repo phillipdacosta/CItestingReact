@@ -1,0 +1,24 @@
+version: '3.2'
+services:
+  code-challenge_reactapptest:
+    image: nginx
+    build: .
+    ports:
+      - "8080:3000" 
+  cypress:
+    image: dadarek/wait-for-dependencies
+    depends_on:
+      - code-challenge_reactapptest
+    command: code-challenge_reactapptest:8080   
+    image: "cypress/included:4.4.0"
+    depends_on:
+      - code-challenge_reactapptest
+    command: code-challenge_reactapptest:8080 
+    restart: on-failure
+    environment:
+      - CYPRESS_baseUrl=http://0.0.0.0:8080/
+    working_dir: /e2e
+    volumes:
+      - ./:/e2e
+    
+  
